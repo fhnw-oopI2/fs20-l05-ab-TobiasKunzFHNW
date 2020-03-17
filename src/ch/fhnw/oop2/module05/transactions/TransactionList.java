@@ -1,7 +1,9 @@
 package ch.fhnw.oop2.module05.transactions;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class implements a list of transactions performed by the traders over time.
@@ -28,7 +30,10 @@ public final class TransactionList {
 	 * @return All transactions made in this year
 	 */
 	public List<Transaction> transactionsInYear(int year) {
-        return null;
+		return allTransactions.stream()
+				.filter(t -> t.getYear() == year)
+				.sorted(Comparator.comparing(Transaction::getValue))
+				.collect(Collectors.toList());
     }
 
 	// TODO: AB03
