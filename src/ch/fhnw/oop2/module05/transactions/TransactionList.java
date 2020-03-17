@@ -3,6 +3,7 @@ package ch.fhnw.oop2.module05.transactions;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -47,7 +48,6 @@ public final class TransactionList {
 				.collect(Collectors.toList());
     }
 
-	// TODO: AB04
 	/**
 	 * Returns all traders from a given city sorted by name.
 	 * 
@@ -55,7 +55,12 @@ public final class TransactionList {
 	 * @return All traders from given city sorted by name
 	 */
 	public List<Trader> traders(String city) {
-        return null;
+        return allTransactions.stream()
+				.filter(t -> t.getTrader().getCity().equals(city))
+				.map(Transaction::getTrader)
+				.distinct()
+				.sorted(Comparator.comparing(Trader::getName))
+				.collect(Collectors.toList());
     }
 
 	// TODO: AB05
