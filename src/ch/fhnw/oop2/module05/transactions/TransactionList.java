@@ -63,7 +63,6 @@ public final class TransactionList {
 				.collect(Collectors.toList());
 	}
 
-	// TODO: AB05
 
 	/**
 	 * True if there are traders in the city, false otherwise.
@@ -76,7 +75,6 @@ public final class TransactionList {
 				.anyMatch(t -> t.getTrader().getCity().equals(city));
 	}
 
-	// TODO: AB06
 
 	/**
 	 * Moves all traders from their city to the city specified.
@@ -85,6 +83,10 @@ public final class TransactionList {
 	 * @param to   the trader's new city
 	 */
 	public void relocateTraders(String from, String to) {
+		allTransactions.stream()
+				.filter(t -> t.getTrader().getCity().equals(from))
+				.map(Transaction::getTrader)
+				.forEach(t -> t.setCity(to));
 	}
 
 	// TODO: AB07
