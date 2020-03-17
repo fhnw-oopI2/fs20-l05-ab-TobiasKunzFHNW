@@ -97,6 +97,9 @@ public final class TransactionList {
 	 * @return the highest value in all the transactions
 	 */
 	public int highestValue() {
-		return 0;
+		return allTransactions.stream()
+				.map(Transaction::getValue)
+				.max(Integer::compareTo)
+				.orElse(0);
 	}
 }
