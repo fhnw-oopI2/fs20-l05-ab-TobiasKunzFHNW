@@ -21,7 +21,6 @@ public final class TransactionList {
 		return allTransactions.size();
 	}
 
-	// TODO: AB02
 	/**
 	 * Returns the transactions done in the year specified.
 	 * The transactions are sorted by value (small to high).
@@ -36,14 +35,16 @@ public final class TransactionList {
 				.collect(Collectors.toList());
     }
 
-	// TODO: AB03
 	/**
 	 * Returns all the cities in which traders work.
 	 * 
 	 * @return The cities
 	 */
 	public List<String> cities() {
-        return null;
+		return allTransactions.stream()
+				.map(t->t.getTrader().getCity())
+				.distinct()
+				.collect(Collectors.toList());
     }
 
 	// TODO: AB04
